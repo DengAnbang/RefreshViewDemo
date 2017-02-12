@@ -247,14 +247,6 @@ public class RefreshView extends ViewGroup {
             mHeadView.layout(0, (int) (-mHeadHeight), (int) mHeadWidth, 0);
             mContentView.layout(0, 0, (int) mContentWidth, (int) mContentHeight);
         }
-
-
-//        mHeadView.layout(0, mContentView.getTop() + (int) (-mHeadHeight), (int) mHeadWidth, (int) mHeadHeight);
-//        mContentView.layout(0, mContentView.getTop(), (int) mContentWidth, mContentView.getBottom() + (int) mContentHeight);
-//
-//
-//        mHeadView.layout(0, (int) (-mHeadHeight), (int) mHeadWidth, 0);
-//        mContentView.layout(0, 0, (int) mContentWidth, (int) mContentHeight);
         if (mFootView != null)
             mFootView.layout(0, (int) mContentHeight, (int) mFootWidth, (int) (mContentHeight + mFootHeight));
 
@@ -336,7 +328,6 @@ public class RefreshView extends ViewGroup {
                 if (top > 0) top = 0;
             }
 
-
             if (mFootView != null) {
 
                 if (isAllowPullUpward) {
@@ -351,11 +342,11 @@ public class RefreshView extends ViewGroup {
             if (state == PULL_LEISURE_REFRESH) {
                 //回调出去当前拉的距离
                 if (mRefreshViewListener != null) {
-                    if (top < 0 && isAllowPullUpward) {
-                        mRefreshViewListener.onPullDownDistanceChange(FLAG_PULL_UP, (int) (mStartDownLoadDistance), top);
-                    }
                     if (top > 0 && isAllowPullDown) {
                         mRefreshViewListener.onPullDownDistanceChange(FLAG_PULL_DOWN, (int) (mStartTopRefreshDistance), top);
+                    }
+                    if (top < 0 && isAllowPullUpward) {
+                        mRefreshViewListener.onPullDownDistanceChange(FLAG_PULL_UP, (int) (mStartDownLoadDistance), -top);
                     }
                 }
             }
@@ -422,6 +413,7 @@ public class RefreshView extends ViewGroup {
      */
     public void finish() {
         isRefreshing = false;
+        close();
     }
     @Override
     public void computeScroll() {

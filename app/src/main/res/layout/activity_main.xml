@@ -7,8 +7,29 @@
     android:layout_height="match_parent"
     tools:context="com.home.dab.refreshviewdemo.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"/>
+    <com.home.dab.refreshviewdemo.refresh.RefreshView
+        android:id="@+id/refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:background="@color/colorAccent"
+            android:gravity="bottom"
+            android:id="@+id/tv_refresh_head"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:background="@color/colorAccent"
+            android:gravity="start"
+            android:id="@+id/tv_refresh_hint_foot"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"/>
+    </com.home.dab.refreshviewdemo.refresh.RefreshView>
+
+
 </RelativeLayout>
